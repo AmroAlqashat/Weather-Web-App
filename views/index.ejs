@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Overpass:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+    <div class="inputs-container">
+        <input class="country-input" placeholder="Search for a city" type="text">
+        <div class="select-div">
+            <label class="measur-lebal">Select a measurement</label>
+            <select class="measurement">
+                <option value="metric" name="unit" class="item mea">Celsius</option>
+                <option value="imperial" name="unit" class="item mea">Fahrenheit</option>
+            </select>
+        </div>
+        <div style="width: 300px;">
+            <button class="weather-btn">Weather</button>
+        </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; transform: scale(0);" class="result-div">
+        <div class="view-container">
+            <div class="view-item view-country">
+                <img src="/images/location.png" class="location-img">
+                <p class="location"></p>
+            </div>
+            <div class="view-item view-day">
+                <img src="/images/day.png" class="day-img">
+                <p class="day"></p>
+            </div>
+
+            <div class="view-item view-temp"></div>
+
+            <div class="view-item view-info">
+
+                <div>
+                    <img src="/images/humidity.png" class="icons">
+                    <p class="humidity"></p>
+                </div>
+
+                <div>
+                    <img src="/images/wind.png" class="icons">
+                    <p class="wind-speed"></p>
+                </div>
+
+                <div>
+                    <img src="/images/clouds.png" class="icons">
+                    <p class="Cloudiness"></p>
+                </div>
+
+            </div>
+            
+            <div class="view-item icon-div view-icon"></div>
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="/js/script.js"></script>
+</body>
+</html>
