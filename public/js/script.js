@@ -41,10 +41,10 @@ $(".weather-btn").on('click', async function() {
                     `);
             }
             const dt = response.dt;
-            
+            console.log(weatherDescription)
             switch(weatherDescription){
                 case "clear sky":
-                    if(dt.currentTime >= dt.sunrise && dt.currentTime <= dt.sunset){
+                    if((dt.currentTime >= dt.sunrise) && (dt.currentTime <= dt.sunset)){
                         weatherDescription = "clearsky";
                         generateGif(weatherDescription);
                     } else {
@@ -65,7 +65,8 @@ $(".weather-btn").on('click', async function() {
                     weatherDescription = "scatteredClouds";
                     generateGif(weatherDescription);
                     break;
-                case "broken clouds":
+                case "broken clouds":    
+                case "overcast clouds":
                     weatherDescription = "brokenClouds";
                     generateGif(weatherDescription);
                     break;
@@ -73,7 +74,17 @@ $(".weather-btn").on('click', async function() {
                     weatherDescription = "showerRain";
                     generateGif(weatherDescription);
                     break;
-                case "rain":
+                case 'light rain':
+                case 'moderate rain':
+                case 'heavy intensity rain':
+                case 'very heavy rain':
+                case 'extreme rain':
+                case 'freezing rain':
+                case 'light intensity shower rain':
+                case 'shower rain':
+                case 'heavy intensity shower rain':
+                case 'ragged shower rain':
+                case 'rain':
                     if(dt.currentTime >= dt.sunrise && dt.currentTime <= dt.sunset){
                         weatherDescription = "rainDay";
                         generateGif(weatherDescription);
@@ -82,15 +93,43 @@ $(".weather-btn").on('click', async function() {
                         generateGif(weatherDescription);
                     }
                     break;
+                case "thunderstorm with light rain":
+                case "thunderstorm with rain":
+                case "thunderstorm with heavy rain":
+                case "light thunderstorm":
                 case "thunderstorm":
+                case "heavy thunderstorm":
+                case "ragged thunderstorm":
+                case "thunderstorm with light drizzle":
+                case "thunderstorm with drizzle":
+                case "thunderstorm with heavy drizzle":
                     weatherDescription = "thunderstorm";
                     generateGif(weatherDescription);
                     break;
                 case "snow":
+                case "light snow":
+                case "heavy snow":
+                case "sleet":
+                case "light shower sleet":
+                case "shower sleet":
+                case "light rain and snow":
+                case "rain and snow":
+                case "light shower snow":
+                case "shower snow":
+                case "heavy shower snow":
                     weatherDescription = "snow";
                     generateGif(weatherDescription);
                     break;
+                case "haze":
+                case "fog":
+                case "sand":
+                case "dust":
                 case "mist":
+                case "smoke":
+                case "sand/ dust whirls":
+                case "volcanic ash":
+                case "Squalls":
+                case "Tornado":
                     weatherDescription = "mist";
                     generateGif(weatherDescription);
                     break;

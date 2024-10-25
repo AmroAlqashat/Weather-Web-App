@@ -1,7 +1,7 @@
 import express from 'express';
 import axios from 'axios';
 import bodyParser from 'body-parser';
-
+import 'dotenv/config';
 
 const app = express();
 const port = 3000;
@@ -10,8 +10,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine','ejs');
 
-const API_KEY_openweather = "37edbeb80990917cb1f055e575b0a277";
-const API_KEY_current = "c3a6c7db36b97bd511e71d30d947663f";
+const API_KEY_openweather = process.env.API_KEY_openweather;
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -42,6 +41,9 @@ app.get('/get-weather', async (req, res) => {
         const sunriseTime = APIresponse_openweather.data.sys.sunrise
         const sunsetTime = APIresponse_openweather.data.sys.sunset
         const currentTime = Math.floor(Date.now()/1000);
+        console.log("current:",currentTime);
+        console.log("sunrise:",sunriseTime);
+        console.log("sunset:",sunsetTime);
         const dt = {
             sunriseTime: sunriseTime,
             sunsetTime: sunsetTime,
