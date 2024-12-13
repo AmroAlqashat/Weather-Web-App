@@ -10,19 +10,38 @@
     <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <div class="inputs-container">
-        <input class="country-input" placeholder="Search for a city" type="text">
-        <div class="select-div">
-            <label class="measur-lebal">Select a measurement</label>
-            <select class="measurement">
-                <option value="metric" name="unit" class="item mea">Celsius</option>
-                <option value="imperial" name="unit" class="item mea">Fahrenheit</option>
-            </select>
+    <div class="container">
+
+        <div class="inputs-container">
+            <input class="country-input" placeholder="Search for a city" type="text">
+            <div class="select-div">
+                <label class="measur-lebal">Select a measurement</label>
+                <select class="measurement">
+                    <option value="metric" name="unit" class="item mea">Celsius</option>
+                    <option value="imperial" name="unit" class="item mea">Fahrenheit</option>
+                </select>
+            </div>
+            <div style="width: 300px; display: flex; align-items: center; justify-content: space-between;">                
+                <button class="weather-btn">Weather</button>
+                <div class="checkbox-wrapper">
+                    <label>Favorite city:</label>
+                    <input type="checkbox" id="cbx">
+                    <label for="cbx" class="check">
+                      <svg width="18px" height="18px" viewBox="0 0 18 18">
+                        <path d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z"></path>
+                        <polyline points="1 9 7 14 15 4"></polyline>
+                      </svg>
+                    </label>
+                </div>
+            </div>
         </div>
-        <div style="width: 300px;">
-            <button class="weather-btn">Weather</button>
+
+        <div class="favorite">
+            <div class="fav-cities"></div>
         </div>
+
     </div>
+
 
     <div style="display: flex; justify-content: center; transform: scale(0);" class="result-div">
         <div class="view-container">

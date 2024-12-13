@@ -1,18 +1,15 @@
-$(".weather-btn").on('click', async function() {
-    const input = $(".country-input").val();
-    const measurement = $(".measurement").val();
+function display_weather(input, measurement, isChecked = "false"){
     $.ajax({
         url: '/get-weather',
         method: 'GET',
         data: {
             input: input,
-            measur: measurement
+            measur: measurement,
+            isChecked: isChecked
         },
         success: function(response){
-            console.log(response.data_open)
-
             $(".country-input").val("");
-
+            
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const today = new Date();
             const dayName = days[today.getDay()];
@@ -41,7 +38,6 @@ $(".weather-btn").on('click', async function() {
                     `);
             }
             const dt = response.dt;
-            console.log(weatherDescription)
             switch(weatherDescription){
                 case "clear sky":
                     if((dt.currentTime >= dt.sunrise) && (dt.currentTime <= dt.sunset)){
@@ -136,11 +132,53 @@ $(".weather-btn").on('click', async function() {
                     
             }
             $(".inputs-container").css("animation-name", "slideFromBottomToUpSearch");
+            $(".favorite").css("animation-name", "slideFromBottomToUpSearch");
             $(".result-div").css("transform", "scale(1)");
             $(".result-div").css("animation-name", "slideFromBottomToUpResult");
+            $("#cbx").prop("checked", false);
+            fetchCities();
         },
         error: function(error){
             console.log("There an error here bod: " , error);
         }
     })
-})
+}
+function fetchCities(){
+    $.ajax({
+        url: '/get-cities',
+        method: 'GET',
+        data:{},
+        success: function(response){
+            let cities = response.cities;
+            const measurement = response.cities;
+            console.log(measurement)
+            $(".fav-cities").empty();
+            cities.forEach(obj => {
+                $(".fav-cities").append(` 
+                    <div>
+                        <img src="/images/location.png" class="fav-city-location-img">
+                        <button class="city" type="button" name="measurement" value="${obj.measurement}">${obj.city}</button>
+                    </div>
+                `);
+            });
+        },
+        error: function(error){
+            console.log("Error displaing cities:", error);
+        }
+    });
+}
+
+fetchCities();
+
+$(".weather-btn").on('click', async function() {
+    const input = $(".country-input").val();
+    const measurement = $(".measurement").val();
+    const isChecked = $("#cbx").is(":checked");
+    display_weather(input, measurement, isChecked);
+});
+
+$(document).on('click', '.city', function(){
+    const input = $(this).text();
+    const measurement = $(this).attr('value');
+    display_weather(input, measurement);
+});
