@@ -10,7 +10,7 @@ const dbUser = process.env.DATABASE_USER;
 const dbName = process.env.DATABASE_NAME;
 const db = new pg.Client({
     user: dbUser,
-    host: "localhost",
+    host: "dpg-cte9ijaj1k6c73ases7g-a",
     database: dbName,
     password: dbPassword,
     port: 5432
