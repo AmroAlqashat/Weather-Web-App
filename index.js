@@ -4,13 +4,14 @@ import bodyParser from 'body-parser';
 import pg from 'pg';
 import "dotenv/config";
 
-
+const API_KEY_openweather = process.env.API_KEY;
 const dbPassword = process.env.DATABASE_PASSWORD;
 const dbUser = process.env.DATABASE_USER;
 const dbName = process.env.DATABASE_NAME;
+
 const db = new pg.Client({
     user: dbUser,
-    host: "dpg-cte9ijaj1k6c73ases7g-a",
+    host: "localhost",
     database: dbName,
     password: dbPassword,
     port: 5432
@@ -23,8 +24,6 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine','ejs');
-
-const API_KEY_openweather = process.env.API_KEY;
 
 app.get('/', async (req, res) => {
     res.render('index');
