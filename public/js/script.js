@@ -142,16 +142,14 @@ function display_weather(input, measurement, isChecked = "false"){
             console.log("There an error here bod: " , error);
         }
     })
-}
+};
 function fetchCities(){
     $.ajax({
         url: '/get-cities',
         method: 'GET',
-        data:{},
         success: function(response){
-            let cities = response.cities;
-            const measurement = response.cities;
-            console.log(measurement)
+            const cities = response.cities;
+            console.log("cities",cities)
             $(".fav-cities").empty();
             cities.forEach(obj => {
                 $(".fav-cities").append(` 
@@ -166,9 +164,9 @@ function fetchCities(){
             console.log("Error displaing cities:", error);
         }
     });
-}
-
+};
 fetchCities();
+
 
 $(".weather-btn").on('click', async function() {
     const input = $(".country-input").val();
@@ -181,4 +179,61 @@ $(document).on('click', '.city', function(){
     const input = $(this).text();
     const measurement = $(this).attr('value');
     display_weather(input, measurement);
+});
+
+$(document).on('click','.login-btn', function() {
+    const HTML = 
+            `
+    <div id="form-container">
+        <h1>Weather App</h1>
+        <form action="login" method="POST">
+            <input type="email" placeholder="Email..." id="email-form" name="email">
+            <input type="password" placeholder="Password..." id="password-form" name="password">
+            <div id="innerDivForm">
+                <button type="submit" id="login-form-btn">Log In</button>
+                <button id="cancel-form">Cancel</button>
+            </div>
+        </form>
+        <div style="height: 20%;">
+            <p style="color: #ece5e5; font-size: 1.1rem; text-align: center;">Or Log In with: </p>
+            <a style="cursor: pointer;" href="/auth/google"><img src="/images/google.png" alt="google" id="googleOAuth"></a>
+        </div>
+    </div>
+            `;
+    $("#form-generate").html(HTML);
+});
+
+$(document).on('click','.signup-btn', function() {
+    const HTML = 
+    `
+    <div id="form-container">
+        <h1>Weather App</h1>
+        <form action="register" method="POST">
+            <input type="email" placeholder="Email..." id="email-form" name="email">
+            <input type="password" placeholder="Password..." id="password-form" name="password">
+            <div id="innerDivForm">
+                <button type="submit" id="signup-form-btn">Sign Up</button>
+                <button id="cancel-form">Cancel</button>
+            </div>
+        </form>
+        <div style="height: 20%;">
+            <p style="color: #ece5e5; font-size: 1.1rem; text-align: center;">Or Sign Up with: </p>
+            <a style="cursor: pointer;" href="/auth/google"><img src="/images/google.png" alt="google" id="googleOAuth"></a>
+        </div>
+    </div>
+    `;
+    $("#form-generate").html(HTML);
+});
+
+$(document).on('click','#cancel-form', function() {
+    $("#form-generate").html("");
+});
+
+$(document).on('click','#login-form-btn', () => {
+    const email = $("#email-form").val();
+    const password = $("#password-form").val();
+
+    $.ajax({
+        url: ""
+    })
 });
